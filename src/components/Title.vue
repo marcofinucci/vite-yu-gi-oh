@@ -2,11 +2,11 @@
 export default {
   name: "Title",
   props: {
-    title: String,
+    text: String,
   },
 };
 </script>
 
 <template>
-  <div class="text-lg font-medium xl:text-2xl">{{ title }}</div>
+  <div class="text-lg font-medium xl:text-2xl">{{ text }}</div>
 </template>

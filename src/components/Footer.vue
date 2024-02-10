@@ -2,13 +2,13 @@
 export default {
   name: "Footer",
   props: {
-    footerText: String,
+    text: String,
   },
 };
 </script>
 
 <template>
   <footer class="bg-white">
-    <div class="container py-6 text-center leading-none">{{ footerText }}</div>
+    <div class="container py-6 text-center leading-none">{{ text }}</div>
   </footer>
 </template>

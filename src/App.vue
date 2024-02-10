@@ -4,6 +4,7 @@ import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import Card from "./components/Card.vue";
 import Title from "./components/Title.vue";
+import Button from "./components/Button.vue";
 
 export default {
   name: "App",
@@ -12,16 +13,17 @@ export default {
     Card,
     Footer,
     Title,
+    Button,
   },
   data() {
     return {
       appName: "Yu-Gi-Oh API",
-      footerText: "Boolean Course, powered by Vue",
+      footerText: "Marco Finucci, Boolean Course",
       fetchBaseURL: "https://db.ygoprodeck.com/api/v7/cardinfo.php",
       isLoading: true,
       isError: false,
       cards: [],
-      cardsPerPage: 20,
+      cardsPerPage: 15,
       cardsShowed: 0,
     };
   },
@@ -60,39 +62,39 @@ export default {
 
 <template>
   <!-- Header -->
-  <Header :appName="appName"></Header>
+  <Header :appName="appName" />
 
   <!-- Main -->
   <main class="py-12">
     <div class="container">
-      <!-- Loading -->
+      <!-- If loading -->
       <div v-if="isLoading">
-        <Title title="Loading..."></Title>
+        <Title text="Loading..." />
       </div>
 
-      <!-- Error -->
+      <!-- If error -->
       <div v-else-if="isError">
-        <Title title="Error loading data"></Title>
+        <Title text="Error loading data" />
       </div>
 
-      <!-- Loaded -->
+      <!-- If loaded -->
       <div v-else>
         <!-- Cards number -->
-        <Title :title="'Showed ' + cardsShowed + ' cards'"></Title>
+        <Title :text="'Showed ' + cardsShowed + ' cards'" />
 
         <!-- Cards list -->
         <div class="mt-8 grid gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
           <div v-for="card in cards">
-            <Card :card="card"></Card>
+            <Card :card="card" />
           </div>
         </div>
 
         <!-- Load more button -->
-        <button class="mx-auto mt-8 table bg-black px-6 py-3 text-white transition-colors hover:bg-gray-800" @click="loadMoreCards()">Load more</button>
+        <Button @click-button="loadMoreCards" text="Load more cards" />
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <Footer :footerText="'Showed ' + cardsShowed + ' cards - ' + footerText"></Footer>
+  <Footer :text="'Showed ' + cardsShowed + ' cards | ' + footerText" />
 </template>
